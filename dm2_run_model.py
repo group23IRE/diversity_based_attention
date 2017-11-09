@@ -56,7 +56,7 @@ def main():
 
     c = Config(sys.argv[1])
     with tf.device('/device:gpu:0'):
-        run_attention = run_model(option.wd, BasicAttention(), c)
+        run_attention = run_model(c.config_dir["working_dir"], BasicAttention(), c)
         run_attention.run_training()
 
 
