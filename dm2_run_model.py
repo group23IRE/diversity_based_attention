@@ -47,13 +47,14 @@ def main():
         "-x", "--emb-train", dest="emb_tr")
     (option, args) = parser.parse_args(sys.argv)
 
-    if (int(option.emb_tr) == 1):
-        x = True
-    else:
-        x = False 
-    c = Config(float(option.lr), int(option.emb_size), int(option.hid_size), int(option.batch_size),
-                int(option.epochs), early_stop=int(option.early_stop), outdir= option.outdir, emb_tr=x)
+    # if (int(option.emb_tr) == 1):
+    #     x = True
+    # else:
+    #     x = False 
+    # c = Config(float(option.lr), int(option.emb_size), int(option.hid_size), int(option.batch_size),
+    #             int(option.epochs), early_stop=int(option.early_stop), outdir= option.outdir, emb_tr=x)
 
+    c = Config(sys.argv[1])
     with tf.device('/device:gpu:0'):
         run_attention = run_model(option.wd, BasicAttention(), c)
         run_attention.run_training()
