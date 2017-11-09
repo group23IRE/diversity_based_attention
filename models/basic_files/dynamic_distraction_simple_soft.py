@@ -18,7 +18,7 @@ from . import rnn
 from tensorflow.python.ops import variable_scope
 from tensorflow.python.util import nest
 from . import rnn_cell
-from .basics import *
+# from .basics import *
 
 
 """ Vanilla-Attend-Decode model will have only document attention 
