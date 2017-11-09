@@ -54,9 +54,9 @@ def main():
     c = Config(float(option.lr), int(option.emb_size), int(option.hid_size), int(option.batch_size),
                 int(option.epochs), early_stop=int(option.early_stop), outdir= option.outdir, emb_tr=x)
 
-    run_attention = run_model(option.wd, BasicAttention(), c)
-    run_attention.run_training()
-
+    with tf.device('/device:gpu:0'):
+        run_attention = run_model(option.wd, BasicAttention(), c)
+        run_attention.run_training()
 
 
 if __name__ == '__main__':

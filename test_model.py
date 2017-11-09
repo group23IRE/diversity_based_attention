@@ -313,7 +313,7 @@ class run_model:
 
 def main():
     c = Config(sys.argv[1])
-    with tf.device('/gpu:0'):
+    with tf.device('/device:gpu:0'):
         run_attention = run_model(c.config_dir["working_dir"], BasicAttention(), c)
         run_attention.run_training()
 
