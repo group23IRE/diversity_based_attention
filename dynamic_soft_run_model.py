@@ -273,21 +273,33 @@ class run_model:
             self.add_placeholders()
 
             # Build a Graph that computes predictions from the inference model.
-            self.logits = self.model.inference(self.config,
-                                               self.config.config_dir["cell_encoder"],
-                                               self.config.config_dir["cell_decoder"],
-                                               self.encode_input_placeholder,
-                                               self.decode_input_placeholder, 
-                                               self.query_input_placeholder,
-                                               self.config.config_dir["embedding_size"],
-                                               self.feed_previous_placeholder,
-                                               len_vocab,
-                                               self.config.config_dir["hidden_size"],
-                                               weights = self.weights_placeholder,
-                                               encoder_sequence_length = self.encode_sequence_length,
-                                               query_sequence_length = self.query_sequence_length,
-                                               initial_embedding = initial_embeddings,
-                                               embedding_trainable=self.config.config_dir["embedding_trainable"])
+
+            self.logits = self.model.inference(self.encode_input_placeholder,
+                                                self.decode_input_placeholder, 
+                                                self.query_input_placeholder,
+                                                self.config.config_dir["embedding_size"],
+                                                self.feed_previous_placeholder,
+                                                len_vocab,
+                                                self.config.config_dir["hidden_size"],
+                                                weights = self.weights_placeholder,
+                                                initial_embedding = initial_embeddings,
+                                                embedding_trainable=self.config.config_dir["embedding_trainable"])
+
+            # self.logits = self.model.inference(self.config,
+            #                                    self.config.config_dir["cell_encoder"],
+            #                                    self.config.config_dir["cell_decoder"],
+            #                                    self.encode_input_placeholder,
+            #                                    self.decode_input_placeholder, 
+            #                                    self.query_input_placeholder,
+            #                                    self.config.config_dir["embedding_size"],
+            #                                    self.feed_previous_placeholder,
+            #                                    len_vocab,
+            #                                    self.config.config_dir["hidden_size"],
+            #                                    weights = self.weights_placeholder,
+            #                                    encoder_sequence_length = self.encode_sequence_length,
+            #                                    query_sequence_length = self.query_sequence_length,
+            #                                    initial_embedding = initial_embeddings,
+            #                                    embedding_trainable=self.config.config_dir["embedding_trainable"])
 
             # Add to the Graph the Ops for loss calculation.
             self.loss_op = self.model.loss_op(self.logits, self.label_placeholder, self.weights_placeholder)
