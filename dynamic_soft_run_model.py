@@ -302,8 +302,7 @@ class run_model:
             #                                    embedding_trainable=self.config.config_dir["embedding_trainable"])
 
             # Add to the Graph the Ops for loss calculation.
-            self.loss_op = self.model.loss_op(self.logits, self.label_placeholder, self.weights_placeholder)
-
+            self.loss_op = self.model.loss_op(self.logits, self.label_placeholder, self.weights_placeholder, len_vocab)
             # Add to the Graph the Ops that calculate and apply gradients.
             self.train_op = self.model.training(self.loss_op, self.config.config_dir["learning_rate"])
 
