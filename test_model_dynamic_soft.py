@@ -11,7 +11,6 @@ import tensorflow as tf
 from optparse import OptionParser
 from models.dynamic_simple_soft_distraction_model import *
 from models.basic_files.dataset_iterator import *
-from test_model import *
 from read_config import *
 import os
 
@@ -315,9 +314,9 @@ class run_model:
 
 def main():
     c = Config(sys.argv[1])
-    # with tf.device('/device:gpu:0'):
-    run_attention = run_model(c.config_dir["working_dir"], BasicAttention(), c)
-    run_attention.run_training()
+    with tf.device('/device:gpu:0'):
+        run_attention = run_model(c.config_dir["working_dir"], BasicAttention(), c)
+        run_attention.run_training()
 
 if __name__ == '__main__':
     main()

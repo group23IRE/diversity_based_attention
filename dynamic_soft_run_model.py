@@ -11,7 +11,6 @@ import tensorflow as tf
 from optparse import OptionParser
 from models.dynamic_simple_soft_distraction_model import *
 from models.basic_files.dataset_iterator import *
-from run_model import *
 from read_config import *
 import os
 
