@@ -19,7 +19,7 @@ is_distraction = True
 # Property: is_static:
 # Switch to turn off the attention module on query.
 
-is_query_static = False
+is_query_static = True
 
 # Property: is_dynamic:
 # Switch to use dynamic rnn
